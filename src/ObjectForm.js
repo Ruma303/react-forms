@@ -21,6 +21,7 @@ const ObjectForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(form);
+        showData();
         setForm({
             name: '',
             email: '',
@@ -28,15 +29,20 @@ const ObjectForm = () => {
             newsletter: false
         });
     };
+
+    const showData = () => {
+        console.log(`Name: ${form.name}`);
+        console.log(`Email: ${form.email}`);
+        console.log(`Password: ${form.password}`);
+        console.log(`Newsletter: ${form.newsletter}`);
+    }
     return (<>
         <section className="container">
             <h1>Form con oggetto</h1>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="name" className="form-label">Your Full name</label>
-                    <input id="name" name="name" type="text" className="form-control"
-                        /* value={name}  */
-                        onChange={handleChange} />
+                    <input id="name" name="name" type="text" className="form-control" onChange={handleChange} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Your Email</label>

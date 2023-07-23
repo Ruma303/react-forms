@@ -28,11 +28,19 @@ const SingleForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        showData();
         setName('');
         setEmail('');
         setPassword('');
         setNewsletter(false);
     };
+
+    const showData = () => {
+        console.log(`Name: ${name}`);
+        console.log(`Email: ${email}`);
+        console.log(`Password: ${password}`);
+        console.log(`Newsletter: ${newsletter}`);
+    }
 
     return (<>
         <section className="container">
@@ -47,18 +55,18 @@ const SingleForm = () => {
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Your Email</label>
                     <input id="email" name="email" type="email" className="form-control"
-                    value={email}
-                    onChange={handleChange} />
+                        value={email}
+                        onChange={handleChange} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">Your Password</label>
                     <input id="password" name="password" type="password" className="form-control"
-                    value={password}
-                    onChange={handleChange} />
+                        value={password}
+                        onChange={handleChange} />
                 </div>
                 <div className="mb-3 form-check">
                     <input id="newsletter" name="newsletter" type="checkbox" className="form-check-input" onChange={handleChange}
-                    checked={newsletter}
+                        checked={newsletter}
                     />
                     <label className="form-check-label" htmlFor="newsletter">Submit to the weekly newsletter</label>
                 </div>
