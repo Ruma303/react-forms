@@ -6,6 +6,7 @@ const SingleForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [newsletter, setNewsletter] = useState(false);
+    const [user, setUser] = useState(null);
 
     const handleChange = (e) => {
         switch (e.target.name) {
@@ -28,6 +29,14 @@ const SingleForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const hashedPassword = password.split('').reverse().join('');
+        const newUser = {
+            name,
+            email,
+            password: hashedPassword,
+            newsletter
+        };
+        setUser(newUser);
         showData();
         setName('');
         setEmail('');
@@ -73,7 +82,19 @@ const SingleForm = () => {
                 <button type="submit" className="btn btn-primary">Register</button>
             </form>
         </section>
+        {user && <User user={user} />}
     </>);
 }
 
+const User = ({ user }) => {
+    return (
+        <div>
+            <h2>New User</h2>
+            <p>Name: {user.name}</p>
+            <p>Email: {user.email}</p>
+            <p>Password: {user.password}</p>
+            <p>Newsletter: {user.newsletter ? 'Yes' : 'No'}</p>
+        </div>
+    );
+}
 export default SingleForm;

@@ -9,6 +9,8 @@ const ObjectForm = () => {
         newsletter: false
     });
 
+    const [users, setUsers] = useState([]);
+
     const handleChange = (e) => {
         const value = e.target.type === 'checkbox' ?
             e.target.checked : e.target.value;
@@ -18,9 +20,22 @@ const ObjectForm = () => {
         });
     };
 
+    //* Una funzione di hashing molto semplice ma non sicura
+    const hashPassword = (password) => {
+        let hash = 0;
+        for (let i = 0; i < password.length; i++) {
+            hash += password.charCodeAt(i);
+        }
+        return hash;
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(form);
+        //* Hash della password prima di salvare l'utente
+        const hashedPassword = hashPassword(form.password);
+        const userWithHashedPassword = { ...form, password: hashedPassword };
+        console.log(userWithHashedPassword);
+        setUsers([...users, userWithHashedPassword]);
         showData();
         setForm({
             name: '',
