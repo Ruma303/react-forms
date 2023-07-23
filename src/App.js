@@ -1,9 +1,11 @@
-import Form from './Form';
+import ObjectForm from './ObjectForm';
+import SingleForm from './SingleForm';
 
 function App() {
   return (
     <div className="App">
-        <Form />
+        <ObjectForm />
+        <SingleForm />
     </div>
   );
 }
