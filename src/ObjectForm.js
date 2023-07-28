@@ -30,11 +30,16 @@ const ObjectForm = () => {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault(); //* Prevent
+        console.log("submit fatto", e);
+
+
         //* Hash della password prima di salvare l'utente
         const hashedPassword = hashPassword(form.password);
+        console.log(hashedPassword);
         const userWithHashedPassword = { ...form, password: hashedPassword };
         console.log(userWithHashedPassword);
+
         setUsers([...users, userWithHashedPassword]);
         showData();
         setForm({
@@ -54,24 +59,27 @@ const ObjectForm = () => {
     return (<>
         <section className="container">
             <h1>Form con oggetto</h1>
-            <form onSubmit={handleSubmit}>
+            <form>
                 <div className="mb-3">
                     <label htmlFor="name" className="form-label">Your Full name</label>
-                    <input id="name" name="name" type="text" className="form-control" onChange={handleChange} />
+                    <input id="name" name="name" type="text" className="form-control" onChange={handleChange} value={form.name} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Your Email</label>
-                    <input id="email" name="email" type="email" className="form-control" onChange={handleChange} />
+                    <input id="email" name="email" type="email" className="form-control" onChange={handleChange} value={form.email} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">Your Password</label>
-                    <input id="password" name="password" type="password" className="form-control" onChange={handleChange} />
+                    <input id="password" name="password" type="password" className="form-control" onChange={handleChange} value={form.password} />
                 </div>
                 <div className="mb-3 form-check">
-                    <input id="newsletter" name="newsletter" type="checkbox" className="form-check-input" onChange={handleChange} />
+                    <input id="newsletter" name="newsletter" type="checkbox" className="form-check-input" onChange={handleChange} value={form.newsletter} />
                     <label className="form-check-label" htmlFor="newsletter">Submit to the weekly newsletter</label>
                 </div>
-                <button type="submit" className="btn btn-primary">Register</button>
+                <button type="submit" className="btn btn-primary"
+                    onClick={handleSubmit}
+                    >
+                    Register</button>
             </form>
         </section>
     </>);
